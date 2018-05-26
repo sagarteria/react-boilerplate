@@ -8,3 +8,6 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+
+.install_nvm.sh.swp
+install_nvm.sh
