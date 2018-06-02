@@ -8,18 +8,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import RingSpinner from 'components/RingSpinner';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectPaymentGateway from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 export class PaymentGateway extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      ringSpinner: true,
+    };
+  }
   render() {
     return (
       <div>
@@ -31,6 +37,7 @@ export class PaymentGateway extends React.PureComponent { // eslint-disable-line
           <a href="https://www.instamojo.com/@sagarteria/ld3ab8d6cfdca4770a70b09591be0ac45/" rel="im-checkout">
           Pay with Instamojo
           </a>
+          <RingSpinner loading={this.state.ringSpinner} />
         </button>
       </div>
     );
